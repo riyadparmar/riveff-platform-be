@@ -90,8 +90,8 @@ controllers.createService = async (req, res) => {
   try {
     const newService = new Service({
       ...req.body,
-      sellerId: req.user._id,
-      sellerName: req.user.name
+      // sellerId: req.user._id,
+      // sellerName: req.user.name
     });
 
     const savedService = await newService.save();
@@ -110,7 +110,7 @@ controllers.createService = async (req, res) => {
 controllers.updateService = async (req, res) => {
   try {
     const updatedService = await Service.findOneAndUpdate(
-      { _id: req.params.serviceId, sellerId: req.user._id },
+      { _id: req.params.serviceId },
       req.body,
       { new: true, runValidators: true }
     );
@@ -137,9 +137,11 @@ controllers.deleteService = async (req, res) => {
   try {
     const deletedService = await Service.findOneAndDelete({ 
       _id: req.params.serviceId, 
-      sellerId: req.user._id 
+      // sellerId: req.user._id 
     });
-
+    console.log(req.user);
+    console.log(req.params);
+    
     if (!deletedService) {
       return res.status(404).json({ 
         error: true, 
