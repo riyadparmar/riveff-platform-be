@@ -65,8 +65,7 @@ controllers.getService = async (req, res) => {
 // 2. Get Single Service Details
 controllers.singleService = async (req, res) => {
   try {
-    const service = await Service.findById(req.params.serviceId)
-      .populate('sellerId', 'name level languages');
+    const service = await Service.findById(req.params.serviceId);
 
     if (!service) {
       return res.status(404).json({ 
