@@ -1,6 +1,8 @@
 const http = require('http');
 const express = require('express');
 const serviceRoutes = require('./service/index');
+const userRoutes = require('./users/index');
+const orderRoutes = require('./orders/index');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -51,7 +53,9 @@ class Router {
         this.app.use(this.routeConfig);
         this.app.use(express.static('./seeds'));
 
+        this.app.use('', userRoutes);
         this.app.use('', serviceRoutes);
+        this.app.use('', orderRoutes);
 
         this.app.use('*', this.routeHandler);
         this.app.use(this.logErrors);

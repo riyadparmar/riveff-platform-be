@@ -111,32 +111,6 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Service'
   }],
-  notifications: [{
-    message: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      enum: ['order', 'message', 'system', 'review'],
-      default: 'system'
-    },
-    referenceId: {
-      type: Schema.Types.ObjectId
-    },
-    referenceModel: {
-      type: String,
-      enum: ['Order', 'Message', 'Service']
-    },
-    isRead: {
-      type: Boolean,
-      default: false
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
-  }],
   createdAt: {
     type: Date,
     default: Date.now
